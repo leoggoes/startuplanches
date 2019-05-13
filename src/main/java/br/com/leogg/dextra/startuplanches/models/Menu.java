@@ -19,6 +19,8 @@ public class Menu{
   private String name;
   @OneToMany(cascade=CascadeType.PERSIST)
   private List<Sandwitch> sandwitches;
+  @OneToMany(cascade=CascadeType.PERSIST)
+  private List<Discount> discounts;
 
 	/**
 	* Returns value of name

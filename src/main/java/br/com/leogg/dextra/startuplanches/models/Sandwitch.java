@@ -5,7 +5,7 @@ import javax.persistence.Table;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.CascadeType;
 import java.util.List;
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ public class Sandwitch{
   @GeneratedValue(strategy=GenerationType.AUTO)
   private Long id;
   private String name;
-  @OneToMany(cascade=CascadeType.PERSIST)
+  @ManyToMany(cascade=CascadeType.PERSIST)
   private List<Ingredient> ingredients = new ArrayList<>();
 
   public double getPrice(){
