@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RestController
 public class HelloController {
 
-    @RequestMapping("/")
+    @RequestMapping("/index")
     public String index() {
-        return "Greetings from Spring Boot!X";
+        return "Greetings from Spring Boot!";
     }
 
 }
