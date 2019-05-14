@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>Startup Lanches</title>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+  <link href="template.css" rel="stylesheet"/>
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="col">
+        <h2 class="sl-title"> Menu </h2>
+      </div>
+    </div>
+  </div><br>
+  <div class="container">
+    <div class="card-deck">
+      <div class="card bg-light" th:each="sandwitch : ${sandwitches}">
+        <div class="card-body">
+          <h4 class="card-title" th:text="${sandwitch.name}"></h4>
+          <p class="card-text"> Ingredientes:</p>
+          <p class="card-text" th:each="ingredient : ${sandwitch.getIngredients()}" th:text="${ingredient.name}"></p>
+        </div>
+        <div class="card-footer">
+          <h5 class="sl-price" th:text="'R$' + ${#numbers.formatDecimal(sandwitch.getDiscountPrice(), 1, 'DEFAULT', 2, 'DEFAULT')}"></h5>
+        </div>
+      </div>
+    </div>
+  </div><br>
+  <div class="container">
+    <div class="table-responsive">
+      <table class="table table-sm table-hover">
+        <thead>
+          <tr>
+            <th class="col-md-2" scope="col">Promoção</th>
+            <th class="col-md-auto" scope="col">Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="discount : ${discounts}">
+            <td class="col-md-2" th:text="${discount.name}"></td>
+            <td class="col-md-auto" th:text="${discount.description}"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div><br>
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="col">
+        <h2 class="sl-title"> Faça seu lanche </h2>
+      </div>
+    </div><br>
+    <form method="post" action="/">
+      <fieldset>
+        <div class="form-group">
+          <label for="name">Nome do Lanche</label>
+          <input class="form-control" type="text" id="name" name="name" placeholder="Insira o nome do lanche aqui" required="required">
+        </div>
+        <div class="form-group" th:each="ingredient : ${ingredientList}">
+          <label th:for="${ingredient.name}" th:text="${ingredient.name}"></label>
+          <input class="form-control" type="number" placeholder="Insira a quantidade" required="required" th:name="${ingredient.name}" th:id="${ingredient.name}">
+        </div>
+        <button class="btn btn-outline btn-secondary" type="submit"> Calcular Preço </button>
+      </fieldset>
+    </form>
+  </div>
+</body>

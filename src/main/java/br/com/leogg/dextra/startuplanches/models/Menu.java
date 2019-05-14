@@ -22,6 +22,23 @@ public class Menu{
   @OneToMany(cascade=CascadeType.PERSIST)
   private List<Discount> discounts;
 
+
+	/**
+	* Returns value of id
+	* @return
+	*/
+	public Long getId() {
+		return id;
+	}
+
+	/**
+	* Sets new value of id
+	* @param
+	*/
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	/**
 	* Returns value of name
 	* @return
@@ -52,5 +69,21 @@ public class Menu{
 	*/
 	public void setSandwitches(List<Sandwitch> sandwitches) {
 		this.sandwitches = sandwitches;
+	}
+
+	/**
+	* Returns value of discounts
+	* @return
+	*/
+	public List<Discount> getDiscounts() {
+		return discounts;
+	}
+
+	/**
+	* Sets new value of discounts
+	* @param
+	*/
+	public void setDiscounts(List<Discount> discounts) {
+		this.discounts = discounts;
 	}
 }

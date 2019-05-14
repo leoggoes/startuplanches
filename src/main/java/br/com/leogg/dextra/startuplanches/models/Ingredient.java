@@ -19,6 +19,12 @@ public class Ingredient{
   @Transient
   private double discountPrice = 0;
 
+  public Ingredient clone(){
+    Ingredient clone = new Ingredient();
+    clone.setName(name);
+    clone.setPrice(price);
+    return clone;
+  }
 
 	/**
 	* Returns value of id
